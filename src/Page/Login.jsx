@@ -7,7 +7,9 @@ import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const Login = () => {
-  const { handleGoogleBUtton } = useContext(AuthContext);
+  const { handleGoogleBUtton, handleLogin, setUser, user } =
+    useContext(AuthContext);
+  console.log(user);
 
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => {
@@ -19,7 +21,6 @@ const Login = () => {
     const form = new FormData(e.target);
     const email = form.get('email');
     const password = form.get('password');
-    console.log(email, password);
     if (password.length < 6) {
       toast.error('❌Password must contain at least 6 character ');
     }
@@ -29,9 +30,16 @@ const Login = () => {
     if (!/[a-z]/.test(password)) {
       toast.error('❌Password must in one lowercase letter ');
     }
-    e.target.reset();
-  };
 
+    handleLogin(email, password).then((res) => {
+      const user = res.user;
+      setUser(user);
+      e.target.reset();
+      if (user) {
+        toast.success('Login successful ');
+      }
+    });
+  };
   return (
     <>
       <Helmet>
@@ -55,6 +63,7 @@ const Login = () => {
                 type="email"
                 id="email"
                 name="email"
+                defaultValue={user && user?.email}
                 required
                 placeholder="Enter your email"
                 className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"

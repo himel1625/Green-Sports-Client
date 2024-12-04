@@ -1,11 +1,14 @@
 import Lottie from 'lottie-react';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { MdOutlineDarkMode, MdOutlineWbSunny } from 'react-icons/md';
-import { NavLink } from 'react-router-dom';
+import { Navigate, NavLink, useNavigate } from 'react-router-dom';
 import animation from '../Animation/animation.json';
 import Header from '../Components/Header';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const Navbar = () => {
+  const { user, LogOut } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [isDarkMode, setIsDarkMode] = useState(
     localStorage.getItem('theme') === 'dark',
   );
@@ -112,18 +115,25 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div>
             <img
-              className="w-10 h-10 rounded-full cursor-pointer"
-              src="https://cdn-icons-png.flaticon.com/512/8847/8847419.png"
+              className="w-12 h-12 rounded-full cursor-pointer"
+              src={
+                // user?.photoURL ||
+                'https://cdn-icons-png.flaticon.com/512/8847/8847419.png'
+              }
               alt="User Avatar"
+              onClick={() => setIsImageVisible(false)}
             />
-            <NavLink
-              to="/Login"
-              className="font-bold text-green-600 hover:text-green-800"
-            >
-              Login
-            </NavLink>
+          </div>
+          <div className="font-bold text-left text-green-400 mx-2">
+            {user && user.email ? (
+              <NavLink to="/">
+                <button onClick={LogOut}>LogOut</button>
+              </NavLink>
+            ) : (
+              <button onClick={() => navigate('/Login')}>Login</button>
+            )}
           </div>
         </div>
       </div>

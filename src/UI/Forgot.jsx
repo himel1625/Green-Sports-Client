@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const Forgot = () => {
-  const { ForgotPassword } = useContext(AuthContext);
+  const { ForgotPassword, user } = useContext(AuthContext);
   const handleForgotPassword = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
@@ -41,7 +41,7 @@ const Forgot = () => {
                 type="email"
                 name="email"
                 id="email"
-                // defaultValue={user && user?.email}
+                defaultValue={user && user?.email}
                 placeholder="Enter your email"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                 required

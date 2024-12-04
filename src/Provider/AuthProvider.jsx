@@ -3,7 +3,9 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
   sendPasswordResetEmail,
+  signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
 } from 'firebase/auth';
 
 import { createContext, useEffect, useState } from 'react';
@@ -20,6 +22,12 @@ const AuthProvider = ({ children }) => {
       setUser(res.user),
     );
   };
+  const handleLogin = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+  const LogOut = () => {
+    return signOut(auth);
+  };
 
   const handleRegister = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -32,12 +40,11 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const Observer = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoader(false);
     });
     return () => {
       Observer();
     };
-  }, []);
+  }, [user]);
 
   const AuthInfo = {
     user,
@@ -45,6 +52,8 @@ const AuthProvider = ({ children }) => {
     ForgotPassword,
     handleGoogleBUtton,
     handleRegister,
+    LogOut,
+    handleLogin,
   };
   return (
     <div>
