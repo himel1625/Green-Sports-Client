@@ -6,7 +6,7 @@ const Error = () => {
   return (
     <>
       <Helmet>
-        <title>Sports Equipment Store | Page Not Found</title>
+        <title>Green Sports | Page Not Found</title>
       </Helmet>
       <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-200">
         <div className="text-center max-w-md p-10 rounded-xl shadow-2xl bg-white animate-fadeIn">
