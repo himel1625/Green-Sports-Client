@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import toast from 'react-hot-toast';
 import { FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { IoEyeSharp } from 'react-icons/io5';
 import { NavLink } from 'react-router-dom';
 
 const Login = () => {
+  
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -15,6 +17,17 @@ const Login = () => {
     const form = new FormData(e.target);
     const email = form.get('email');
     const password = form.get('password');
+    console.log(email, password);
+    if (password.length < 6) {
+      toast.error('❌Password must contain at least 6 character ');
+    }
+    if (!/[A-Z]/.test(password)) {
+      toast.error('❌Password must in one uppercase letter ');
+    }
+    if (!/[a-z]/.test(password)) {
+      toast.error('❌Password must in one lowercase letter ');
+    }
+    e.target.reset()
   };
 
   return (
@@ -23,9 +36,9 @@ const Login = () => {
         <title>Green Sports | Login</title>
       </Helmet>
 
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="w-full max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl p-8 bg-white shadow-lg rounded-lg">
-          <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="w-full max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl p-8 shadow-lg rounded-lg">
+          <h2 className="text-2xl font-bold text-center text-green-800 mb-6">
             Login
           </h2>
           <form onSubmit={handleLoginSubmit} className="space-y-6">

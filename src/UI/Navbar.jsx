@@ -14,26 +14,19 @@ const Navbar = () => {
           Home
         </NavLink>
         <NavLink
-          to="/"
+          to="/Equipment"
           className={({ isActive }) =>
             `font-bold ${isActive ? 'text-green-600' : 'hover:text-green-600'}`
           }
-        ></NavLink>
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            `font-bold ${isActive ? 'text-green-600' : 'hover:text-warning'}`
-          }
-        >
-          Home
-        </NavLink>
+        > All-Equipment</NavLink>
+       
       </div>
     </>
   );
 
   return (
     <>
-      <div className="navbar h-20 bg-green-300">
+      <div className="navbar h-20  sticky top-0 z-10 backdrop-filter backdrop-blur-lg ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -59,7 +52,10 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <h1 className=" text-2xl font-bold">Green Sports</h1>
+
+          <NavLink to="/">
+            <h1 className=" text-2xl font-bold">Green Sports</h1>
+          </NavLink>
         </div>
         <div className="navbar-end">
           <div className="navbar-center hidden lg:flex">

@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Error from '../Error/Error';
 import Home from '../Home/Home';
 import MainLayout from '../Layout/MainLayout';
+import Equipment from '../Page/Equipment';
 import Login from '../Page/Login';
 import Register from '../Page/Register';
 import Forgot from '../UI/Forgot';
@@ -25,9 +26,13 @@ const router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
-        path: "/Forgot",
-        element:<Forgot></Forgot>
-      }
+        path: '/Forgot',
+        element: <Forgot></Forgot>,
+      },
+      {
+        path: '/Equipment',
+        element: <Equipment></Equipment>,
+      },
     ],
   },
 ]);

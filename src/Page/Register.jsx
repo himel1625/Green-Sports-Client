@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import toast from 'react-hot-toast';
 import { FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { IoEyeSharp } from 'react-icons/io5';
 import { NavLink } from 'react-router-dom';
@@ -19,6 +20,18 @@ const Register = () => {
     const photoUrl = form.get('photoUrl');
     const email = form.get('email');
     const password = form.get('password');
+    console.log(name, email, password);
+
+    if (password.length < 6) {
+      toast.error('❌Password must contain at least 6 character ');
+    }
+    if (!/[A-Z]/.test(password)) {
+      toast.error('❌Password must in one uppercase letter ');
+    }
+    if (!/[a-z]/.test(password)) {
+      toast.error('❌Password must in one lowercase letter ');
+    }
+    e.target.reset();
   };
 
   return (
@@ -26,9 +39,9 @@ const Register = () => {
       <Helmet>
         <title>Green Sports | Home</title>
       </Helmet>
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="w-full max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl p-8 bg-white shadow-lg rounded-lg">
-          <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="w-full max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl p-8  shadow-lg rounded-lg">
+          <h2 className="text-2xl font-bold text-center text-green-800 mb-6">
             Create Account
           </h2>
           <form onSubmit={handleRegisterSubmit} className="space-y-6">
@@ -135,10 +148,7 @@ const Register = () => {
           </form>
 
           <div className="mt-6 text-center">
-            <button
-
-              className="w-full py-2 bg-gradient-to-r from-green-500 to-[#34d399] text-white rounded-md hover:from-green-600 hover:to-[#10b981] transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50"
-            >
+            <button className="w-full py-2 bg-gradient-to-r from-green-500 to-[#34d399] text-white rounded-md hover:from-green-600 hover:to-[#10b981] transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">
               <div className="flex items-center justify-center gap-6">
                 <FaGoogle></FaGoogle> Sign in with Google
               </div>
