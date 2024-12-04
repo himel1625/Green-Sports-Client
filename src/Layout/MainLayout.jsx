@@ -13,7 +13,7 @@ const MainLayout = () => {
       </Helmet>
       <div className="mx-auto max-w-[1440px] lg:mx-auto scroll-smooth font-sora">
         <Navbar></Navbar>
-        <div className="min-h-[calc(100vh-232px)]">
+        <div className="min-h-[calc(100vh-232px)] bg-base-100">
           <Toaster position="top-right" reverseOrder={false} />
           <Outlet></Outlet>
         </div>

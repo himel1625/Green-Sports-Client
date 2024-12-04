@@ -1,14 +1,13 @@
-
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDpQ5hvysUA1Vc2nL4PdtxSnCTeLN87c7Q",
-  authDomain: "green-sports-4eb7c.firebaseapp.com",
-  projectId: "green-sports-4eb7c",
-  storageBucket: "green-sports-4eb7c.firebasestorage.app",
-  messagingSenderId: "521988881383",
-  appId: "1:521988881383:web:ccf08cd57f3c8101335b42"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase

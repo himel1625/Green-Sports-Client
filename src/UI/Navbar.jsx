@@ -56,8 +56,8 @@ const Navbar = () => {
   );
 
   return (
-    <div>
-      <div className="navbar h-20  sticky top-0 z-10 backdrop-filter backdrop-blur-lg px-4">
+    <div className="sticky top-0 z-10">
+      <div className="navbar h-20  backdrop-filter backdrop-blur-lg px-4">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -86,11 +86,13 @@ const Navbar = () => {
 
           <div>
             <h1 className="text-3xl font-bold text-green-400 flex items-center justify-center">
-              <div className="w-10 h-10 mx-2" >
-              <Lottie animationData={animation} />
+              <div className="w-10 h-10 mx-2 hidden lg:block">
+                <Lottie animationData={animation} />
               </div>
-              <span className="text-green-900">G</span>reen-
-              <span className="text-green-900">S</span>ports
+              <NavLink to="/">
+                <span className="text-green-900">G</span>reen-
+                <span className="text-green-900">S</span>ports
+              </NavLink>
             </h1>
           </div>
         </div>
