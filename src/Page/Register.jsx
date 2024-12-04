@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import toast from 'react-hot-toast';
 import { FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { IoEyeSharp } from 'react-icons/io5';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const Register = () => {
+  const { handleRegister, setUser } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -20,7 +22,6 @@ const Register = () => {
     const photoUrl = form.get('photoUrl');
     const email = form.get('email');
     const password = form.get('password');
-    console.log(name, email, password);
 
     if (password.length < 6) {
       toast.error('❌Password must contain at least 6 character ');
@@ -31,9 +32,19 @@ const Register = () => {
     if (!/[a-z]/.test(password)) {
       toast.error('❌Password must in one lowercase letter ');
     }
-    e.target.reset();
-  };
 
+    handleRegister(email, password).then((res) => {
+      const user = res.user;
+      setUser(user);
+      e.target.reset();
+      if (user) {
+        toast.success('register successful ');
+      }
+    });
+    setTimeout(() => {
+      toast.success('You have create a account so please login');
+    }, 4000);
+  };
   return (
     <>
       <Helmet>

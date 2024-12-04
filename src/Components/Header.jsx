@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div>
       <div className="h-12 flex justify-between items-center  sm:px-8 md:0x-10 cursor-pointer backdrop-filter backdrop-blur-lg px-5 ">
-        <div className="flex items-center gap-4 text-sm md:text-base">
+        <div className="flex items-center gap-4 text-sm md:text-base font-bold text-gray-600">
           <FiMenu size={30} />
           <p className="hidden sm:block hover:text-green-400">Today Deals</p>
           <p className="hidden sm:block hover:text-green-400">

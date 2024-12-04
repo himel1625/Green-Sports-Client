@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
+import toast from 'react-hot-toast';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const Forgot = () => {
+  const { ForgotPassword } = useContext(AuthContext);
   const handleForgotPassword = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
     const email = form.get('email');
-
-    if (email) {
-      toast.success('Successfully  forget your password');
-    }
+    ForgotPassword(email).then(() => {
+      e.target.reset();
+      if (email) {
+        toast.success('Successfully  forget your password');
+      }
+    });
     window.open('http://mail.google.com', '_blank');
   };
 
