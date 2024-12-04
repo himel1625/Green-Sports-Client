@@ -42,7 +42,7 @@ const Navbar = () => {
             `font-bold ${isActive ? 'text-green-600' : 'hover:text-green-600'}`
           }
         >
-          All-Equipment
+          All-Equi:
         </NavLink>
         {user && (
           <NavLink
@@ -54,6 +54,30 @@ const Navbar = () => {
             }
           >
             MyProfile
+          </NavLink>
+        )}
+        {user && (
+          <NavLink
+            to="/MyEquipmentList"
+            className={({ isActive }) =>
+              `font-bold ${
+                isActive ? 'text-green-600' : 'hover:text-green-600'
+              }`
+            }
+          >
+            Equipment-List
+          </NavLink>
+        )}
+        {user && (
+          <NavLink
+            to="/Details"
+            className={({ isActive }) =>
+              `font-bold ${
+                isActive ? 'text-green-600' : 'hover:text-green-600'
+              }`
+            }
+          >
+            Details
           </NavLink>
         )}
         <div
@@ -75,7 +99,11 @@ const Navbar = () => {
       <div className="navbar h-20  backdrop-filter backdrop-blur-xl px-4">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost lg:hidden "
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-10 w-10"
@@ -93,7 +121,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-16 w-52 p-2 shadow "
             >
               {links}
             </ul>
