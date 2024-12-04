@@ -1,14 +1,14 @@
 import Lottie from 'lottie-react';
 import React, { useContext, useEffect, useState } from 'react';
 import { MdOutlineDarkMode, MdOutlineWbSunny } from 'react-icons/md';
-import { Navigate, NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import animation from '../Animation/animation.json';
 import Header from '../Components/Header';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const Navbar = () => {
   const { user, LogOut } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const Navigate = useNavigate();
   const [isDarkMode, setIsDarkMode] = useState(
     localStorage.getItem('theme') === 'dark',
   );
@@ -116,23 +116,28 @@ const Navbar = () => {
           </div>
 
           <div>
-            <img
-              className="w-12 h-12 rounded-full cursor-pointer"
-              src={
-                // user?.photoURL ||
-                'https://cdn-icons-png.flaticon.com/512/8847/8847419.png'
-              }
-              alt="User Avatar"
-              onClick={() => setIsImageVisible(false)}
-            />
+            {user?.photoURL ? (
+              <img
+                className="w-12 h-12 rounded-full cursor-pointer"
+                src={user.photoURL}
+                alt="User Avatar"
+              />
+            ) : (
+              <img
+                className="w-12 h-12 rounded-full cursor-pointer"
+                src="https://cdn-icons-png.flaticon.com/512/8847/8847419.png"
+                alt="Default Avatar"
+              />
+            )}
           </div>
+
           <div className="font-bold text-left text-green-400 mx-2">
             {user && user.email ? (
               <NavLink to="/">
                 <button onClick={LogOut}>LogOut</button>
               </NavLink>
             ) : (
-              <button onClick={() => navigate('/Login')}>Login</button>
+              <button onClick={() => Navigate('/Login')}>Login</button>
             )}
           </div>
         </div>
