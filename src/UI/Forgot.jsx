@@ -38,7 +38,7 @@ const Forgot = () => {
                 Email Address
               </label>
               <input
-                type="email"
+                type="email"  
                 name="email"
                 id="email"
                 defaultValue={user && user?.email}

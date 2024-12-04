@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 
 import { createContext, useEffect, useState } from 'react';
@@ -37,6 +38,23 @@ const AuthProvider = ({ children }) => {
     return sendPasswordResetEmail(auth, email);
   };
 
+  const ManageProfile = (name, image, email) => {
+    updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: image,
+      email: email,
+    }).then(() => {
+      setUser((prevUser) => ({
+        ...prevUser,
+        displayName: name,
+        photoURL: image,
+        email: email,
+      }));
+    });
+    // .finally(() => {
+    //   setLoader(false);
+    // });
+  };
   useEffect(() => {
     const Observer = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -54,6 +72,7 @@ const AuthProvider = ({ children }) => {
     handleRegister,
     LogOut,
     handleLogin,
+    ManageProfile,
   };
   return (
     <div>

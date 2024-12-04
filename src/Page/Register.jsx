@@ -7,7 +7,8 @@ import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const Register = () => {
-  const { handleRegister, setUser, LogOut } = useContext(AuthContext);
+  const { handleRegister, setUser, LogOut, ManageProfile } =
+    useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -42,6 +43,7 @@ const Register = () => {
       }
       LogOut();
     });
+    ManageProfile(name, photoUrl, email);
     setTimeout(() => {
       toast.success('You have create a account so please login');
     }, 4000);
