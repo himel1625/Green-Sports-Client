@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const Register = () => {
-  const { handleRegister, setUser, LogOut, ManageProfile } =
+  const { handleRegister, setUser, LogOut, ManageProfile, handleGoogleBUtton } =
     useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => {
@@ -23,6 +23,7 @@ const Register = () => {
     const photoUrl = form.get('photoUrl');
     const email = form.get('email');
     const password = form.get('password');
+    console.log(photoUrl);
 
     if (password.length < 6) {
       toast.error('❌Password must contain at least 6 character ');
@@ -162,7 +163,10 @@ const Register = () => {
           </form>
 
           <div className="mt-6 text-center">
-            <button className="w-full py-2 bg-gradient-to-r from-green-500 to-[#34d399] text-white rounded-md hover:from-green-600 hover:to-[#10b981] transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">
+            <button
+              onClick={handleGoogleBUtton}
+              className="w-full py-2 bg-gradient-to-r from-green-500 to-[#34d399] text-white rounded-md hover:from-green-600 hover:to-[#10b981] transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50"
+            >
               <div className="flex items-center justify-center gap-6">
                 <FaGoogle></FaGoogle> Sign in with Google
               </div>

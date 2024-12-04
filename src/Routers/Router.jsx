@@ -6,6 +6,7 @@ import Equipment from '../Page/Equipment';
 import Login from '../Page/Login';
 import Register from '../Page/Register';
 import Forgot from '../UI/Forgot';
+import MyProfile from '../UI/MyProfile';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: '/Equipment',
         element: <Equipment></Equipment>,
+      },
+      {
+        path: '/MyProfile',
+        element: <MyProfile></MyProfile>,
       },
     ],
   },

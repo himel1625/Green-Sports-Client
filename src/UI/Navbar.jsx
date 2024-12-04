@@ -44,6 +44,18 @@ const Navbar = () => {
         >
           All-Equipment
         </NavLink>
+        {user && (
+          <NavLink
+            to="/MyProfile"
+            className={({ isActive }) =>
+              `font-bold ${
+                isActive ? 'text-green-600' : 'hover:text-green-600'
+              }`
+            }
+          >
+            MyProfile
+          </NavLink>
+        )}
         <div
           className="flex items-center cursor-pointer lg:hidden"
           onClick={toggleMode}
