@@ -8,7 +8,8 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
           <div className="space-y-4">
             <h2 className="text-3xl font-bold mb-2 text-green-400">
-              Green Sports
+              <span className="text-green-900">G</span>reen
+              <span className="text-green-900">S</span>ports
             </h2>
             <p className="text-gray-600 leading-relaxed">
               Leading provider of quality export equipment globally. We deliver
