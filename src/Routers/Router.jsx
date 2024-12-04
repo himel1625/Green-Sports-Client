@@ -7,6 +7,7 @@ import Login from '../Page/Login';
 import Register from '../Page/Register';
 import Forgot from '../UI/Forgot';
 import MyProfile from '../UI/MyProfile';
+import UpdateProfile from '../UI/UpdateProfile';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: '/MyProfile',
         element: <MyProfile></MyProfile>,
+      },
+      {
+        path: '/UpdateProfile',
+        element: <UpdateProfile></UpdateProfile>,
       },
     ],
   },

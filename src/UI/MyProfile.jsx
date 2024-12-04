@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
-import { Helmet } from 'react-helmet-async';
 
 const MyProfile = () => {
   const { user } = useContext(AuthContext);
@@ -19,7 +19,7 @@ const MyProfile = () => {
       </Helmet>
 
       <div className="flex justify-center items-center min-h-screen  p-4">
-        <div className="w-full max-w-md md:max-w-lg lg:max-w-xl mx-auto bg-white rounded-lg shadow-md p-6">
+        <div className="w-full max-w-md md:max-w-lg lg:max-w-xl mx-auto  rounded-lg shadow-md p-6">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
             <img
               src={
@@ -59,12 +59,20 @@ const MyProfile = () => {
               </div>
             </div>
           </div>
-          <button
-            onClick={() => Navigate('/Profile')}
-            className="mt-6 w-full py-3 bg-green-400 text-white text-sm md:text-base rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300"
-          >
-            Update Profile
-          </button>
+          <div className='flex gap-10'>
+            <button
+              onClick={() => Navigate('/UpdateProfile')}
+              className="mt-6 w-full py-3 bg-green-400 text-white text-sm md:text-base rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300"
+            >
+              Update Profile
+            </button>
+            <button
+              onClick={() => Navigate('/Forgot')}
+              className="mt-6 w-full py-3 bg-green-400 text-white text-sm md:text-base rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300"
+            >
+              Forgot password
+            </button>
+          </div>
         </div>
       </div>
     </>

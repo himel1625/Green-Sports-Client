@@ -16,8 +16,6 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const GoogleProvider = new GoogleAuthProvider();
   const [user, setUser] = useState(null);
-  console.log(user);
-
   const handleGoogleBUtton = () => {
     return signInWithPopup(auth, GoogleProvider).then((res) =>
       setUser(res.user),

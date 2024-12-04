@@ -114,7 +114,7 @@ const Navbar = () => {
 
         <div className="navbar-end flex items-center space-x-4">
           <div className="nav bar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">{links}</ul>
+            <ul className="menu menu-horizontal px-1 mx-2">{links}</ul>
             <div
               className="flex items-center cursor-pointer"
               onClick={toggleMode}
