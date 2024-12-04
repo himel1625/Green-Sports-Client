@@ -10,8 +10,9 @@ const Header = () => {
           <p className="hidden sm:block">Today Deals</p>
           <p className="hidden sm:block">Customer Service</p>
           <p className="hidden sm:block">Gift Card</p>
+          <p className="hidden sm:block">Mystery box</p>
+          <p className="hidden sm:block">Child item</p>
         </div>
-
 
         <div className="flex items-center">
           <input
