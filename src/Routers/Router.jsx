@@ -4,6 +4,7 @@ import Home from '../Home/Home';
 import MainLayout from '../Layout/MainLayout';
 import Login from '../Page/Login';
 import Register from '../Page/Register';
+import Forgot from '../UI/Forgot';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         path: '/Register',
         element: <Register></Register>,
       },
+      {
+        path: "/Forgot",
+        element:<Forgot></Forgot>
+      }
     ],
   },
 ]);
