@@ -18,9 +18,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const handleGoogleBUtton = () => {
-    return signInWithPopup(auth, GoogleProvider).then((res) =>
-      setUser(res.user),
-    );
+    return signInWithPopup(auth, GoogleProvider).then(res => setUser(res.user));
   };
   const handleLogin = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
@@ -33,7 +31,7 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const ForgotPassword = (email) => {
+  const ForgotPassword = email => {
     return sendPasswordResetEmail(auth, email);
   };
 
@@ -43,17 +41,16 @@ const AuthProvider = ({ children }) => {
       photoURL: image,
       email: email,
     }).then(() => {
-      setUser((prevUser) => ({
+      setUser(prevUser => ({
         ...prevUser,
         displayName: name,
         photoURL: image,
         email: email,
       }));
     });
-   
   };
   useEffect(() => {
-    const Observer = onAuthStateChanged(auth, (currentUser) => {
+    const Observer = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
     });
     return () => {
@@ -61,6 +58,7 @@ const AuthProvider = ({ children }) => {
     };
   }, [user]);
 
+  
   const AuthInfo = {
     user,
     setUser,
@@ -70,6 +68,8 @@ const AuthProvider = ({ children }) => {
     LogOut,
     handleLogin,
     ManageProfile,
+    
+  
   };
   return (
     <div>

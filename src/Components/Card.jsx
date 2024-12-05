@@ -85,7 +85,7 @@ const Card = ({ products }) => {
                 </div>
               </div>
             ) : (
-              <NavLink to={`${_id}`}>
+              <NavLink to={`/Details/${_id}`}>
                 <button className="mt-4 w-full py-2 bg-green-400 text-white rounded hover:bg-green-700">
                   More Details
                 </button>

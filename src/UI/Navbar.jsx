@@ -5,12 +5,11 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import animation from '../Animation/animation.json';
 import Header from '../Components/Header';
 import { AuthContext } from '../Provider/AuthProvider';
-
 const Navbar = () => {
   const { user, LogOut } = useContext(AuthContext);
   const Navigate = useNavigate();
   const [isDarkMode, setIsDarkMode] = useState(
-    localStorage.getItem('theme') === 'dark',
+    localStorage.getItem('theme') === 'dark'
   );
 
   useEffect(() => {
@@ -66,7 +65,7 @@ const Navbar = () => {
               }`
             }
           >
-           my-Equi-List
+            my-Equi-List
           </NavLink>
         )}
         {user && (
@@ -155,7 +154,6 @@ const Navbar = () => {
               )}
             </div>
           </div>
-
           <div>
             {user?.photoURL ? (
               <img

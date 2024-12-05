@@ -9,8 +9,7 @@ const ProductSection = () => {
     fetch('http://localhost:4000/products')
       .then(res => res.json())
       .then(data => {
-        const limitedProducts = data.slice(0, 6);
-        setProducts(limitedProducts);
+        setProducts(data);
       })
       .catch(error => {
         toast.error(`${error}`);
