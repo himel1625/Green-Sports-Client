@@ -10,6 +10,7 @@ import Register from '../Page/Register';
 import Forgot from '../UI/Forgot';
 import MyProfile from '../UI/MyProfile';
 import UpdateProfile from '../UI/UpdateProfile';
+import AddEquipment from '../Page/AddEquipment';
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: '/Details',
         element: <Details></Details>,
+      },
+      {
+        path: '/AddEquipment',
+        element: <AddEquipment></AddEquipment>,
       },
     ],
   },

@@ -9,7 +9,6 @@ import { AuthContext } from '../Provider/AuthProvider';
 const Login = () => {
   const { handleGoogleBUtton, handleLogin, setUser, user } =
     useContext(AuthContext);
-  console.log(user);
 
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => {
@@ -31,14 +30,19 @@ const Login = () => {
       toast.error('❌Password must in one lowercase letter ');
     }
 
-    handleLogin(email, password).then((res) => {
-      const user = res.user;
-      setUser(user);
-      e.target.reset();
-      if (user) {
-        toast.success('Login successful ');
-      }
-    });
+    handleLogin(email, password)
+      .then((res) => {
+        const user = res.user;
+        setUser(user);
+        e.target.reset();
+        if (user) {
+          toast.success('Login successful ');
+        }
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        toast.error(`${errorCode}`);
+      });
   };
   return (
     <>

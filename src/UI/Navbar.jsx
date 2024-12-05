@@ -36,14 +36,6 @@ const Navbar = () => {
         >
           Home
         </NavLink>
-        <NavLink
-          to="/Equipment"
-          className={({ isActive }) =>
-            `font-bold ${isActive ? 'text-green-600' : 'hover:text-green-600'}`
-          }
-        >
-          All-Equi:
-        </NavLink>
         {user && (
           <NavLink
             to="/MyProfile"
@@ -56,6 +48,15 @@ const Navbar = () => {
             MyProfile
           </NavLink>
         )}
+        <NavLink
+          to="/Equipment"
+          className={({ isActive }) =>
+            `font-bold ${isActive ? 'text-green-600' : 'hover:text-green-600'}`
+          }
+        >
+          All-Equi:
+        </NavLink>
+
         {user && (
           <NavLink
             to="/MyEquipmentList"
@@ -65,19 +66,19 @@ const Navbar = () => {
               }`
             }
           >
-            Equipment-List
+            Equi-List
           </NavLink>
         )}
         {user && (
           <NavLink
-            to="/Details"
+            to="/AddEquipment"
             className={({ isActive }) =>
               `font-bold ${
                 isActive ? 'text-green-600' : 'hover:text-green-600'
               }`
             }
           >
-            Details
+            Add-Equi:
           </NavLink>
         )}
         <div

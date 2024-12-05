@@ -7,8 +7,15 @@ import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const Register = () => {
-  const { handleRegister, setUser, LogOut, ManageProfile, handleGoogleBUtton } =
-    useContext(AuthContext);
+  const {
+    handleRegister,
+    setUser,
+    LogOut,
+    ManageProfile,
+    handleGoogleBUtton,
+    user,
+  } = useContext(AuthContext);
+
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -22,8 +29,7 @@ const Register = () => {
     const name = firstName + lastName;
     const photoUrl = form.get('photoUrl');
     const email = form.get('email');
-
-
+    const password = form.get('password');
     if (password.length < 6) {
       toast.error('❌Password must contain at least 6 character ');
     }
@@ -33,21 +39,28 @@ const Register = () => {
     if (!/[a-z]/.test(password)) {
       toast.error('❌Password must in one lowercase letter ');
     }
-
-    handleRegister(email, password).then((res) => {
-      const user = res.user;
-      setUser(user);
-      e.target.reset();
-      if (user) {
-        toast.success('register successful ');
-      }
-      LogOut();
-    });
-    ManageProfile(name, photoUrl, email);
-    setTimeout(() => {
-      toast.success('You have create a account so please login');
-    }, 4000);
+    handleRegister(email, password)
+      .then((res) => {
+        const user = res.user;
+        setUser(user);
+        e.target.reset();
+        if (user) {
+          toast.success('register successful ');
+        }
+        ManageProfile(name, photoUrl, email);
+        LogOut();
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        toast.error(`${errorCode}`);
+      });
+    if (user) {
+      setTimeout(() => {
+        toast.success('You have create a account so please login');
+      }, 4000);
+    }
   };
+
   return (
     <>
       <Helmet>
@@ -164,6 +177,7 @@ const Register = () => {
           <div className="mt-6 text-center">
             <button
               onClick={handleGoogleBUtton}
+              type="button"
               className="w-full py-2 bg-gradient-to-r from-green-500 to-[#34d399] text-white rounded-md hover:from-green-600 hover:to-[#10b981] transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50"
             >
               <div className="flex items-center justify-center gap-6">
