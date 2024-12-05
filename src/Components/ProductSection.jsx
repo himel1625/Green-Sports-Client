@@ -7,9 +7,12 @@ const ProductSection = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     fetch('http://localhost:4000/products')
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((error) => {
+      .then(res => res.json())
+      .then(data => {
+        const limitedProducts = data.slice(0, 6);
+        setProducts(limitedProducts);
+      })
+      .catch(error => {
         toast.error(`${error}`);
       });
   }, []);
@@ -23,7 +26,7 @@ const ProductSection = () => {
         <h1 className="text-4xl font-bold text-center mb-8">Product Section</h1>
 
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 mx-auto lg:mx-auto md:mx-auto">
-          {products.map((item) => (
+          {products.map(item => (
             <Card products={item} key={item._id} />
           ))}
         </div>

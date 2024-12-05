@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import toast from 'react-hot-toast';
 import { FaRegEdit } from 'react-icons/fa';
 import { SiCcleaner } from 'react-icons/si';
+
 import Swal from 'sweetalert2';
 const Equipment = () => {
   const [products, setProducts] = useState([]);
@@ -16,6 +17,10 @@ const Equipment = () => {
       });
   }, []);
 
+  const handleShowButton = _id => {
+    console.log(_id);
+  };
+
   const handleDelete = _id => {
     Swal.fire({
       title: 'Are you sure?',
@@ -28,7 +33,6 @@ const Equipment = () => {
     }).then(result => {
       if (result.isConfirmed) {
         fetch(`http://localhost:4000/AllProducts/${_id}`, {
-          // Added '/' before ${_id}
           method: 'DELETE',
         })
           .then(res => {
@@ -84,7 +88,10 @@ const Equipment = () => {
                   <td>{product.rating}</td>
                   <td>{product.stockStatus}</td>
                   <td className="flex gap-2 cursor-pointer text-green-500">
-                    <FaRegEdit size={30} />{' '}
+                    <FaRegEdit
+                      onClick={() => handleShowButton(product._id)}
+                      size={30}
+                    />
                     <SiCcleaner
                       onClick={() => handleDelete(product._id)}
                       size={30}
