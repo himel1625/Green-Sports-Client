@@ -1,20 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import toast from 'react-hot-toast';
 
 const Equipment = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:4000/AllProducts')
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((error) => {
+        toast.error(`${error}`);
+      });
+  }, []);
+
   return (
     <>
       <Helmet>
         <title>Green Sports | Equipment</title>
       </Helmet>
-      <div>
-        <div className="overflow-x-auto">
-          <table className="table">
-            {/* head */}
-            <thead>
+      <div className='mt-6'>
+        <div className="overflow-x-auto font-bold">
+          <table className="table ">
+            <thead >
               <tr>
-                <th></th>
-                <th>Name  </th>
+                <th>NO</th>
+                <th>Name</th>
                 <th>Category</th>
                 <th>Price</th>
                 <th>Rating</th>
@@ -22,14 +33,16 @@ const Equipment = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>Blue</td>
-                <td>Blue</td>
-                <td>Blue</td>
-              </tr>   
+              {products.map((product, index) => (
+                <tr key={product._id}>
+                  <th>{index + 1}</th>
+                  <td>{product.itemName}</td>
+                  <td>{product.category}</td>
+                  <td>{product.price}</td>
+                  <td>{product.rating}</td>
+                  <td>{product.stockStatus}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
