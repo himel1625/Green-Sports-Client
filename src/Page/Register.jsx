@@ -21,7 +21,7 @@ const Register = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleRegisterSubmit = (e) => {
+  const handleRegisterSubmit = e => {
     e.preventDefault();
     const form = new FormData(e.target);
     const firstName = form.get('firstName');
@@ -40,7 +40,7 @@ const Register = () => {
       toast.error('❌Password must in one lowercase letter ');
     }
     handleRegister(email, password)
-      .then((res) => {
+      .then(res => {
         const user = res.user;
         setUser(user);
         e.target.reset();
@@ -50,7 +50,7 @@ const Register = () => {
         ManageProfile(name, photoUrl, email);
         LogOut();
       })
-      .catch((error) => {
+      .catch(error => {
         const errorCode = error.code;
         toast.error(`${errorCode}`);
       });

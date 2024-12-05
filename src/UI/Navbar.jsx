@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import animation from '../Animation/animation.json';
 import Header from '../Components/Header';
 import { AuthContext } from '../Provider/AuthProvider';
+import toast from 'react-hot-toast';
 const Navbar = () => {
   const { user, LogOut } = useContext(AuthContext);
   const Navigate = useNavigate();
@@ -22,6 +23,11 @@ const Navbar = () => {
     setIsDarkMode(!isDarkMode);
     localStorage.setItem('theme', newMode);
     document.documentElement.setAttribute('data-theme', newMode);
+  };
+
+  const handelLogOutButton = e => {
+    LogOut();
+    toast.success('Successfully Logout');
   };
 
   const links = (
@@ -173,7 +179,7 @@ const Navbar = () => {
           <div className="font-bold text-left text-green-400 mx-2">
             {user && user.email ? (
               <NavLink to="/">
-                <button onClick={LogOut}>LogOut</button>
+                <button onClick={handelLogOutButton}>LogOut</button>
               </NavLink>
             ) : (
               <button onClick={() => Navigate('/Login')}>Login</button>

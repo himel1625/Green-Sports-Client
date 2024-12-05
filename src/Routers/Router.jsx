@@ -12,6 +12,7 @@ import MyProfile from '../UI/MyProfile';
 import UpdateProfile from '../UI/UpdateProfile';
 import AddEquipment from '../Page/AddEquipment';
 import PrivateRoute from '../Private/PrivateRoute';
+import UpgradedProducts from '../Page/UpgradedProducts';
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,11 @@ const router = createBrowserRouter([
       {
         path: '/AddEquipment',
         element: <AddEquipment></AddEquipment>,
+      },
+      {
+        path: '/UpgradedProducts/:_id',
+        element: <UpgradedProducts> </UpgradedProducts>,
+        loader: () => fetch('http://localhost:4000/AllProducts'),
       },
     ],
   },

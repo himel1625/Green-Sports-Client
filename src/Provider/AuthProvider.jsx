@@ -11,7 +11,7 @@ import {
 
 import { createContext, useEffect, useState } from 'react';
 import auth from '../Auth/auth';
-import toast from 'react-hot-toast';
+
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
@@ -53,7 +53,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const Observer = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
-      setLoading(false);
+
     });
     return () => {
       Observer();

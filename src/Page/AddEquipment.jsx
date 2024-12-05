@@ -5,7 +5,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 
 const AddEquipment = () => {
   const { user } = useContext(AuthContext);
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const form = new FormData(e.target);
     const image = form.get('image');
@@ -40,8 +40,8 @@ const AddEquipment = () => {
       },
       body: JSON.stringify(allData),
     })
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         if (data) {
           toast.success('✅ Data Added Successful ');
           e.target.reset();

@@ -69,7 +69,7 @@ const Card = ({ products }) => {
             {pathname === '/MyEquipmentList' ? (
               <div className="flex items-center justify-between gap-4 p-4 bg-gray-100 rounded-lg shadow-md">
                 <div className="w-1/2">
-                  <NavLink to={`${_id}`}>
+                  <NavLink to={`/UpgradedProducts/${_id}`}>
                     <button className="w-full py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-700 transition duration-300">
                       Update
                     </button>
