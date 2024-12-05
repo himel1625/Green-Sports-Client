@@ -36,7 +36,7 @@ const Details = () => {
       <div className="flex flex-col lg:flex-row justify-center items-center space-y-6 lg:space-y-0 border border-gray-300 shadow-lg rounded-lg">
         <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl rounded-lg shadow-lg overflow-hidden bg-white border">
           <img
-            src={image || '/path/to/placeholder-image.jpg'}
+            src={image}
             alt={foundItemName}
             className="w-full h-56 sm:h-64 md:h-72 lg:h-96 object-cover rounded-t-lg"
           />
@@ -52,7 +52,7 @@ const Details = () => {
             <p className="text-lg sm:text-xl font-bold text-green-600">
               ${price}
             </p>
-            <p className="text-yellow-500 flex items-center">
+            <p className="text-green-500 font-bold text-xl   flex items-center">
               <i className="fas fa-star mr-1"></i> {rating} / 5
             </p>
           </div>

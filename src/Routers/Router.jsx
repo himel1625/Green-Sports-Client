@@ -11,6 +11,7 @@ import Forgot from '../UI/Forgot';
 import MyProfile from '../UI/MyProfile';
 import UpdateProfile from '../UI/UpdateProfile';
 import AddEquipment from '../Page/AddEquipment';
+import PrivateRoute from '../Private/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -52,7 +53,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/Details/:_id',
-        element: <Details></Details>,
+        element: (
+          <PrivateRoute>
+            <Details></Details>
+          </PrivateRoute>
+        ),
         loader: () => fetch('http://localhost:4000/Details'),
       },
       {

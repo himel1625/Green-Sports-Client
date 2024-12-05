@@ -3,19 +3,21 @@ import { Helmet } from 'react-helmet-async';
 import toast from 'react-hot-toast';
 import { FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { IoEyeSharp } from 'react-icons/io5';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const Login = () => {
   const { handleGoogleBUtton, handleLogin, setUser, user } =
     useContext(AuthContext);
+  const location = useLocation();
+  const Navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = e => {
     e.preventDefault();
     const form = new FormData(e.target);
     const email = form.get('email');
@@ -31,15 +33,16 @@ const Login = () => {
     }
 
     handleLogin(email, password)
-      .then((res) => {
+      .then(res => {
         const user = res.user;
         setUser(user);
+        Navigate(Location?.state ? Location.state : '/');
         e.target.reset();
         if (user) {
           toast.success('Login successful ');
         }
       })
-      .catch((error) => {
+      .catch(error => {
         const errorCode = error.code;
         toast.error(`${errorCode}`);
       });

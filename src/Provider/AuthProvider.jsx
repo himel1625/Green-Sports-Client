@@ -11,6 +11,7 @@ import {
 
 import { createContext, useEffect, useState } from 'react';
 import auth from '../Auth/auth';
+import toast from 'react-hot-toast';
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
@@ -23,12 +24,12 @@ const AuthProvider = ({ children }) => {
   const handleLogin = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
-  const LogOut = () => {
-    return signOut(auth);
-  };
 
   const handleRegister = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
+  };
+  const LogOut = () => {
+    return signOut(auth);
   };
 
   const ForgotPassword = email => {
@@ -52,13 +53,13 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const Observer = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
+      setLoading(false);
     });
     return () => {
       Observer();
     };
   }, [user]);
 
-  
   const AuthInfo = {
     user,
     setUser,
@@ -68,8 +69,6 @@ const AuthProvider = ({ children }) => {
     LogOut,
     handleLogin,
     ManageProfile,
-    
-  
   };
   return (
     <div>
