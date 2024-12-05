@@ -1,29 +1,69 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import toast from 'react-hot-toast';
-import { FaRegEdit } from "react-icons/fa";
-import { SiCcleaner } from "react-icons/si";
+import { FaRegEdit } from 'react-icons/fa';
+import { SiCcleaner } from 'react-icons/si';
+import Swal from 'sweetalert2';
 const Equipment = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:4000/AllProducts')
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((error) => {
+      .then(res => res.json())
+      .then(data => setProducts(data))
+      .catch(error => {
         toast.error(`${error}`);
       });
   }, []);
 
+  const handleDelete = _id => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then(result => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:4000/AllProducts/${_id}`, {
+          // Added '/' before ${_id}
+          method: 'DELETE',
+        })
+          .then(res => {
+            if (!res.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return res.json();
+          })
+          .then(data => {
+            Swal.fire({
+              title: 'Deleted!',
+              text: 'Your file has been deleted.',
+              icon: 'success',
+            });
+          })
+          .catch(error => {
+            Swal.fire({
+              title: 'Error!',
+              text: 'There was an issue deleting your file.',
+              icon: 'error',
+            });
+            console.error('Error:', error);
+          });
+      }
+    });
+  };
   return (
     <>
       <Helmet>
         <title>Green Sports | Equipment</title>
       </Helmet>
-      <div className='mt-6'>
+      <div className="mt-6">
         <div className="overflow-x-auto font-bold">
           <table className="table ">
-            <thead >
+            <thead>
               <tr>
                 <th>NO</th>
                 <th>Name</th>
@@ -43,7 +83,13 @@ const Equipment = () => {
                   <td>{product.price}</td>
                   <td>{product.rating}</td>
                   <td>{product.stockStatus}</td>
-                  <td className='flex gap-2 cursor-pointer'><FaRegEdit size={30}/> <SiCcleaner size={30}/></td>
+                  <td className="flex gap-2 cursor-pointer text-green-500">
+                    <FaRegEdit size={30} />{' '}
+                    <SiCcleaner
+                      onClick={() => handleDelete(product._id)}
+                      size={30}
+                    />
+                  </td>
                 </tr>
               ))}
             </tbody>
