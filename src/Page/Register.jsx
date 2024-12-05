@@ -66,8 +66,8 @@ const Register = () => {
       <Helmet>
         <title>Green Sports | Home</title>
       </Helmet>
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="w-full max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl p-8  shadow-lg rounded-lg">
+      <div className="min-h-screen flex items-center justify-center border border-gray-300 shadow-lg">
+        <div className="w-full max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl p-8  shadow-lg rounded-lg ">
           <h2 className="text-2xl font-bold text-center text-green-800 mb-6">
             Create Account
           </h2>

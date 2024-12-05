@@ -24,7 +24,7 @@ const Forgot = () => {
       <Helmet>
         <title>Green Sports | Forgot password</title>
       </Helmet>
-      <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 shadow-lg border border-gray-300">
         <div className="w-full max-w-sm sm:max-w-md lg:max-w-lg  shadow-lg rounded-lg p-6 sm:p-8 lg:p-12">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-green-800 text-center mb-6">
             Forgot Password

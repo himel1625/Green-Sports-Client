@@ -1,10 +1,14 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const MyEquipmentList = () => {
   return (
-    <div>
-      this is My Equipment List section  
-    </div>
+    <>
+      <Helmet>
+        <title>Green Sports | My-Equipment-List</title>
+      </Helmet>
+      this is My Equipment List section
+    </>
   );
 };
 

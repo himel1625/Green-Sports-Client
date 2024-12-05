@@ -18,7 +18,7 @@ const MyProfile = () => {
         <title>Green Sports | MyProfile</title>
       </Helmet>
 
-      <div className="flex justify-center items-center min-h-screen  p-4">
+      <div className="flex justify-center items-center min-h-screen  p-4 border shadow-lg border-gray-500">
         <div className="w-full max-w-md md:max-w-lg lg:max-w-xl mx-auto  rounded-lg shadow-md p-6">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
             <img
@@ -59,7 +59,7 @@ const MyProfile = () => {
               </div>
             </div>
           </div>
-          <div className='flex gap-10'>
+          <div className="flex gap-10">
             <button
               onClick={() => Navigate('/UpdateProfile')}
               className="mt-6 w-full py-3 bg-green-400 text-white text-sm md:text-base rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300"
