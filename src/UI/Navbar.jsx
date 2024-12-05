@@ -66,7 +66,7 @@ const Navbar = () => {
               }`
             }
           >
-            Equi-List
+           my-Equi-List
           </NavLink>
         )}
         {user && (

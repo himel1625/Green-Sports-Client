@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import toast from 'react-hot-toast';
-
+import { FaRegEdit } from "react-icons/fa";
+import { SiCcleaner } from "react-icons/si";
 const Equipment = () => {
   const [products, setProducts] = useState([]);
 
@@ -30,6 +31,7 @@ const Equipment = () => {
                 <th>Price</th>
                 <th>Rating</th>
                 <th>Stock</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -41,6 +43,7 @@ const Equipment = () => {
                   <td>{product.price}</td>
                   <td>{product.rating}</td>
                   <td>{product.stockStatus}</td>
+                  <td className='flex gap-2 cursor-pointer'><FaRegEdit size={30}/> <SiCcleaner size={30}/></td>
                 </tr>
               ))}
             </tbody>

@@ -22,7 +22,7 @@ const ProductSection = () => {
       <div className="container mx-auto px-4 py-8 mt-6">
         <h1 className="text-4xl font-bold text-center mb-8">Product Section</h1>
 
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 mx-auto lg:mx-auto md:mx-auto">
           {products.map((item) => (
             <Card products={item} key={item._id} />
           ))}

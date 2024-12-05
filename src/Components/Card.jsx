@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Card = ({ products }) => {
   const { _id, image, itemName, category, price, rating, stockStatus } =
@@ -25,9 +26,11 @@ const Card = ({ products }) => {
               {stockStatus ? `Stock:${stockStatus}` : 'Out of Stock'}
             </p>
 
-            <button className="mt-4 w-full py-2 bg-green-400 text-white rounded hover:bg-green-700">
-              More Details
-            </button>
+            <NavLink to={`${_id}`}>
+              <button className="mt-4 w-full py-2 bg-green-400 text-white rounded hover:bg-green-700">
+                More Details
+              </button>
+            </NavLink>
           </div>
         </div>
       </div>
