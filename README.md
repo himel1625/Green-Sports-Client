@@ -20,5 +20,6 @@ Check out the live demo of the project here: [Live Demo](#) _(link coming soon)_
   - Lottie React
   - Swiper js
   - React Tooltip
+  - SweetAlert2
   - React Icons
   - React Helmet

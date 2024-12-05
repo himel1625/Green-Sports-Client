@@ -1,6 +1,7 @@
 import { useContext } from 'react';
-import { AuthContext } from '../Provider/AuthProvider';
 import { Helmet } from 'react-helmet-async';
+import toast from 'react-hot-toast';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const AddEquipment = () => {
   const { user } = useContext(AuthContext);
@@ -18,6 +19,7 @@ const AddEquipment = () => {
     const stockStatus = form.get('stockStatus');
     const userEmail = form.get('userEmail');
     const userName = form.get('userName');
+
     const allData = {
       image,
       itemName,
@@ -31,8 +33,20 @@ const AddEquipment = () => {
       userEmail,
       userName,
     };
-    console.log(allData);
-    e.target.reset();
+    fetch('http://localhost:4000/products', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(allData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data) {
+          toast.success('✅ Data Added Successful ');
+          e.target.reset();
+        }
+      });
   };
 
   return (
@@ -144,7 +158,7 @@ const AddEquipment = () => {
               Processing Time (Days)
             </label>
             <input
-              type="date"
+              type="text"
               name="processingTime"
               placeholder="Enter processing time in days"
               min="1"

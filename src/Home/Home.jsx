@@ -8,11 +8,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import ProductSection from '../Components/Productsection';
 import SportsCategories from '../Components/SportsCategories';
 import img1 from '../Image/img1.jpg';
+import img2 from '../Image/imt2.jpg';
 import img3 from '../Image/img3.jpg';
 import img4 from '../Image/img4.jpg';
 import img5 from '../Image/img5.jpg';
 import img6 from '../Image/img6.jpg';
-import img2 from '../Image/imt2.jpg';
 
 const Home = () => {
   return (
