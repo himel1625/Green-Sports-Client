@@ -1,39 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { useLoaderData, useParams } from 'react-router-dom';
-import CardDetails from '../Components/CardDetails';
+import React from 'react';
 
-const Details = () => {
-  const [products, setProducts] = useState([]);
-  const data = useLoaderData();
-  const { _id } = useParams();
-  useEffect(() => {
-    const itemFind = [...data].find(item => item._id == _id);
-    setProducts(itemFind);
-  }, [data, _id]);
+const CardDetails = ({ products }) => {
+  const {
+    image,
+    itemName: foundItemName,
+    categoryName,
+    description,
+    price,
+    rating,
+    customization,
+    processingTime,
+    stockStatus,
+  } = products || {};
 
-  // const {
-  //   image,
-  //   itemName: foundItemName,
-  //   categoryName,
-  //   description,
-  //   price,
-  //   rating,
-  //   customization,
-  //   processingTime,
-  //   stockStatus,
-  // } = products || {};
+  if (!products) {
+    return <div className="text-center py-10">Loading...</div>;
+  }
 
-  // if (!products) {
-  //   return <div className="text-center py-10">Loading...</div>;
-  // }
-
-  // if (!foundItemName) {
-  //   return <div className="text-center py-10">Product Not Found</div>;
-  // }
-
+  if (!foundItemName) {
+    return <div className="text-center py-10">Product Not Found</div>;
+  }
   return (
-    <div className="container mx-auto p-4 lg:p-8 ">
-      {/* <div className="flex flex-col lg:flex-row justify-center items-center space-y-6 lg:space-y-0 border border-gray-300 shadow-lg rounded-lg">
+    <div>
+      <div className="flex flex-col lg:flex-row justify-center items-center space-y-6 lg:space-y-0 border border-gray-300 shadow-lg rounded-lg">
         <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl rounded-lg shadow-lg overflow-hidden bg-white border">
           <img
             src={image}
@@ -73,10 +62,9 @@ const Details = () => {
             Add to Cart
           </button>
         </div>
-      </div> */}
-      <CardDetails products={products} />
+      </div>
     </div>
   );
 };
 
-export default Details;
+export default CardDetails;

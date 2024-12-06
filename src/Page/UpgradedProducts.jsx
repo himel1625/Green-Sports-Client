@@ -12,7 +12,6 @@ const UpgradedProducts = () => {
     const itemFind = [...data].find(item => item._id == _id);
     setProducts(itemFind);
   }, [data, _id]);
-
   const handleSubmit = e => {
     e.preventDefault();
     const form = new FormData(e.target);
@@ -41,7 +40,7 @@ const UpgradedProducts = () => {
       userName,
     };
 
-    fetch(`http://localhost:4000/products/${_id}`, {
+    fetch(`http://localhost:4000/AllProducts/${_id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -62,6 +61,8 @@ const UpgradedProducts = () => {
         }
       });
   };
+
+
   return (
     <>
       <Helmet>

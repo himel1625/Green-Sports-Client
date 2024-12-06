@@ -9,7 +9,7 @@ import { AuthContext } from '../Provider/AuthProvider';
 const Login = () => {
   const { handleGoogleBUtton, handleLogin, setUser, user } =
     useContext(AuthContext);
-  const location = useLocation();
+  const Location = useLocation();
   const Navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);

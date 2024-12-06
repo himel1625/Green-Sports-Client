@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { FaEye } from 'react-icons/fa';
 import { SiCcleaner } from 'react-icons/si';
 import Swal from 'sweetalert2';
+
 const Equipment = () => {
   const [products, setProducts] = useState([]);
 
@@ -15,8 +16,6 @@ const Equipment = () => {
         toast.error(`${error}`);
       });
   }, []);
-
- 
 
   const handleDelete = _id => {
     Swal.fire({
@@ -33,17 +32,18 @@ const Equipment = () => {
           method: 'DELETE',
         })
           .then(res => {
-            if (!res.ok) {
-              throw new Error('Network response was not ok');
-            }
+            // if (!res.ok) {
+            //   throw new Error('Network response was not ok');
+            // }
             return res.json();
           })
-          .then(data => {
+          .then(() => {
             Swal.fire({
               title: 'Deleted!',
               text: 'Your file has been deleted.',
               icon: 'success',
             });
+            setProducts(prev => prev.filter(product => product._id !== _id));
           })
           .catch(error => {
             Swal.fire({
@@ -56,14 +56,27 @@ const Equipment = () => {
       }
     });
   };
+
+  const sortHighToLow = () => {
+    const sortedProducts = [...products].sort((a, b) => b.price - a.price);
+    setProducts(sortedProducts);
+  };
+
   return (
     <>
       <Helmet>
         <title>Green Sports | Equipment</title>
       </Helmet>
       <div className="mt-6">
-        <div className="overflow-x-auto font-bold">
-          <table className="table ">
+        <button
+          onClick={sortHighToLow}
+          className="ml-2 text-green-500 font-bold text-xl px-7"
+          title="Sort by Price: High to Low"
+        >
+          sort by price
+        </button>
+        <div className="overflow-x-auto font-bold ">
+          <table className="table">
             <thead>
               <tr>
                 <th>NO</th>
@@ -72,7 +85,7 @@ const Equipment = () => {
                 <th>Price</th>
                 <th>Rating</th>
                 <th>Stock</th>
-                <th></th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -85,8 +98,7 @@ const Equipment = () => {
                   <td>{product.rating}</td>
                   <td>{product.stockStatus}</td>
                   <td className="flex gap-2 cursor-pointer text-green-400">
-                    <FaEye  size={30}/>
-
+                    <FaEye size={30} />
                     <SiCcleaner
                       onClick={() => handleDelete(product._id)}
                       size={30}

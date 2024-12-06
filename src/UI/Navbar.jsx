@@ -25,11 +25,6 @@ const Navbar = () => {
     document.documentElement.setAttribute('data-theme', newMode);
   };
 
-  const handelLogOutButton = e => {
-    LogOut();
-    toast.success('Successfully Logout');
-  };
-
   const links = (
     <>
       <div className="lg:space-x-4 flex flex-col lg:flex lg:flex-row">
@@ -179,7 +174,7 @@ const Navbar = () => {
           <div className="font-bold text-left text-green-400 mx-2">
             {user && user.email ? (
               <NavLink to="/">
-                <button onClick={handelLogOutButton}>LogOut</button>
+                <button onClick={LogOut}>LogOut</button>
               </NavLink>
             ) : (
               <button onClick={() => Navigate('/Login')}>Login</button>
