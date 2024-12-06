@@ -8,7 +8,6 @@ import {
   signOut,
   updateProfile,
 } from 'firebase/auth';
-
 import { createContext, useEffect, useState } from 'react';
 import auth from '../Auth/auth';
 
@@ -17,15 +16,19 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const GoogleProvider = new GoogleAuthProvider();
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const handleGoogleBUtton = () => {
+    setLoading(true);
     return signInWithPopup(auth, GoogleProvider).then(res => setUser(res.user));
   };
   const handleLogin = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const handleRegister = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const LogOut = () => {
@@ -33,10 +36,12 @@ const AuthProvider = ({ children }) => {
   };
 
   const ForgotPassword = email => {
+    setLoading(true);
     return sendPasswordResetEmail(auth, email);
   };
 
   const ManageProfile = (name, image, email) => {
+    setLoading(true);
     updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: image,
@@ -53,7 +58,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const Observer = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
-
+      setLoading(false);
     });
     return () => {
       Observer();
@@ -69,6 +74,7 @@ const AuthProvider = ({ children }) => {
     LogOut,
     handleLogin,
     ManageProfile,
+    loading,
   };
   return (
     <div>

@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import toast from 'react-hot-toast';
 import { FaEye } from 'react-icons/fa';
 import { SiCcleaner } from 'react-icons/si';
+import { NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Equipment = () => {
@@ -32,15 +33,12 @@ const Equipment = () => {
           method: 'DELETE',
         })
           .then(res => {
-            // if (!res.ok) {
-            //   throw new Error('Network response was not ok');
-            // }
             return res.json();
           })
           .then(() => {
             Swal.fire({
               title: 'Deleted!',
-              text: 'Your file has been deleted.',
+              text: 'Your Products has been deleted.',
               icon: 'success',
             });
             setProducts(prev => prev.filter(product => product._id !== _id));
@@ -48,7 +46,7 @@ const Equipment = () => {
           .catch(error => {
             Swal.fire({
               title: 'Error!',
-              text: 'There was an issue deleting your file.',
+              text: 'There was an issue deleting your Products.',
               icon: 'error',
             });
             console.error('Error:', error);
@@ -98,7 +96,10 @@ const Equipment = () => {
                   <td>{product.rating}</td>
                   <td>{product.stockStatus}</td>
                   <td className="flex gap-2 cursor-pointer text-green-400">
-                    <FaEye size={30} />
+                    <NavLink to={`/Details/${product._id}`}>
+                      <FaEye size={30} />
+                    </NavLink>
+
                     <SiCcleaner
                       onClick={() => handleDelete(product._id)}
                       size={30}

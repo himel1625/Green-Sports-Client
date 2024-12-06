@@ -95,6 +95,11 @@ const Navbar = () => {
     </>
   );
 
+  const handleLogout = () => {
+    LogOut();
+    toast.success('Successfully Logout');
+  };
+
   return (
     <div className="sticky top-0 z-10">
       <div className="navbar h-20  backdrop-filter backdrop-blur-xl px-4">
@@ -174,7 +179,7 @@ const Navbar = () => {
           <div className="font-bold text-left text-green-400 mx-2">
             {user && user.email ? (
               <NavLink to="/">
-                <button onClick={LogOut}>LogOut</button>
+                <button onClick={handleLogout}>LogOut</button>
               </NavLink>
             ) : (
               <button onClick={() => Navigate('/Login')}>Login</button>
