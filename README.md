@@ -1,4 +1,4 @@
-# Sports Equipment Store
+# Green-Sports
 
 ## Description
 
@@ -32,7 +32,7 @@ This responsive e-commerce platform is designed for sports enthusiasts to explor
 2. Install dependencies using `npm install`.
 3. Set up Firebase credentials and configure the `.env` file.
 4. Run the development server using `npm dev`.
-5. Visit `http://localhost:3000` to view the app in action.
+
 
 
 ## Live Demo

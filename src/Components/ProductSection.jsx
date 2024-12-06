@@ -8,7 +8,7 @@ const ProductSection = () => {
   const Navigate = useNavigate();
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:4000/products')
+    fetch('https://a10-b10-sports-equipment-store-server.vercel.app/products')
       .then(res => res.json())
       .then(data => {
         setProducts(data);

@@ -7,7 +7,9 @@ const MyEquipmentList = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:4000/AllProducts')
+    fetch(
+      'https://a10-b10-sports-equipment-store-server.vercel.app/AllProducts'
+    )
       .then(res => res.json())
       .then(data => {
         const filteredData = data.filter(product => product.userEmail);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { FiMenu } from 'react-icons/fi';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -13,7 +14,16 @@ const Header = () => {
           </p>
           <p className="hidden sm:block hover:text-green-400">Gift Card</p>
           <p className="hidden sm:block hover:text-green-400">Mystery Box</p>
-          <p className="hidden sm:block hover:text-green-400">Child Item</p>
+          <NavLink
+            to="/BlogPage"
+            className={({ isActive }) =>
+              `font-bold ${
+                isActive ? 'text-green-600' : 'hover:text-green-600'
+              }`
+            }
+          >
+            <p className="hidden sm:block hover:text-green-400">Blog-Page</p>
+          </NavLink>
         </div>
 
         <div className="flex items-center">

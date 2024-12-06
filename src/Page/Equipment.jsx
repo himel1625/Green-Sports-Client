@@ -10,7 +10,9 @@ const Equipment = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:4000/AllProducts')
+    fetch(
+      'https://a10-b10-sports-equipment-store-server.vercel.app/AllProducts'
+    )
       .then(res => res.json())
       .then(data => setProducts(data))
       .catch(error => {
@@ -29,9 +31,12 @@ const Equipment = () => {
       confirmButtonText: 'Yes, delete it!',
     }).then(result => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/AllProducts/${_id}`, {
-          method: 'DELETE',
-        })
+        fetch(
+          `https://a10-b10-sports-equipment-store-server.vercel.app/AllProducts/${_id}`,
+          {
+            method: 'DELETE',
+          }
+        )
           .then(res => {
             return res.json();
           })

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
-import toast from 'react-hot-toast';
 import { AuthContext } from '../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const AddEquipment = () => {
   const { user } = useContext(AuthContext);
@@ -33,7 +33,7 @@ const AddEquipment = () => {
       userEmail,
       userName,
     };
-    fetch('http://localhost:4000/products', {
+    fetch('https://a10-b10-sports-equipment-store-server.vercel.app/products', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,10 +42,15 @@ const AddEquipment = () => {
     })
       .then(res => res.json())
       .then(data => {
-        if (data) {
-          toast.success('✅ Data Added Successful ');
-          e.target.reset();
-        }
+        Swal.fire({
+          toast: true,
+          position: 'top-end',
+          icon: 'success',
+          title: 'Data Added Successful',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        e.target.reset();
       });
   };
 

@@ -40,13 +40,16 @@ const UpgradedProducts = () => {
       userName,
     };
 
-    fetch(`http://localhost:4000/AllProducts/${_id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(allData),
-    })
+    fetch(
+      `https://a10-b10-sports-equipment-store-server.vercel.app/AllProducts/${_id}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(allData),
+      }
+    )
       .then(res => res.json())
       .then(data => {
         if (data.modifiedCount > 0) {
@@ -61,7 +64,6 @@ const UpgradedProducts = () => {
         }
       });
   };
-
 
   return (
     <>

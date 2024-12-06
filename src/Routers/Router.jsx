@@ -13,6 +13,7 @@ import UpdateProfile from '../UI/UpdateProfile';
 import AddEquipment from '../Page/AddEquipment';
 import PrivateRoute from '../Private/PrivateRoute';
 import UpgradedProducts from '../Page/UpgradedProducts';
+import BlogPage from '../Page/BlogPage';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
+      },
+      {
+        path: '/BlogPage',
+        element: <BlogPage></BlogPage>,
       },
       {
         path: '/Login',
@@ -59,7 +64,10 @@ const router = createBrowserRouter([
             <Details></Details>
           </PrivateRoute>
         ),
-        loader: () => fetch('http://localhost:4000/Details'),
+        loader: () =>
+          fetch(
+            'https://a10-b10-sports-equipment-store-server.vercel.app/Details'
+          ),
       },
       {
         path: '/AddEquipment',
@@ -68,7 +76,10 @@ const router = createBrowserRouter([
       {
         path: '/UpgradedProducts/:_id',
         element: <UpgradedProducts> </UpgradedProducts>,
-        loader: () => fetch('http://localhost:4000/AllProducts'),
+        loader: () =>
+          fetch(
+            'https://a10-b10-sports-equipment-store-server.vercel.app/AllProducts'
+          ),
       },
     ],
   },
