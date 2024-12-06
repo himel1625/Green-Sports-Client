@@ -43,5 +43,5 @@ const ProductSection = () => {
     </>
   );
 };
-// Equipment;
+
 export default ProductSection;

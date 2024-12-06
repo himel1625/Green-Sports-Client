@@ -37,7 +37,7 @@ This responsive e-commerce platform is designed for sports enthusiasts to explor
 
 ## Live Demo
 
-Check out the live demo of the project here: [Live Demo](#) _(link coming soon)_
+Check out the live demo of the project here: [Live Demo](#) _(https://green-sports-4eb7c.web.app/)_
 
 ## Technologies Used
 
