@@ -2,10 +2,9 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { NavLink } from 'react-router-dom';
 import Lottie from 'lottie-react';
-import errorAnimation from '../Animation/Error.json'; // Renamed to 'errorAnimation'
+import errorAnimation from '../Animation/Error.json'; 
 
 const ErrorPage = () => {
-  // Renamed component to 'ErrorPage'
   return (
     <>
       <Helmet>
@@ -23,4 +22,4 @@ const ErrorPage = () => {
   );
 };
 
-export default ErrorPage; // Updated export
+export default ErrorPage; 

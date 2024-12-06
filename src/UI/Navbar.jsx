@@ -30,6 +30,7 @@ const Navbar = () => {
       <div className="lg:space-x-4 flex flex-col lg:flex lg:flex-row">
         <NavLink
           to="/"
+          title="Home"
           className={({ isActive }) =>
             `font-bold ${isActive ? 'text-green-600' : 'hover:text-green-600'}`
           }
@@ -39,6 +40,7 @@ const Navbar = () => {
         {user && (
           <NavLink
             to="/MyProfile"
+            title="My-Profile"
             className={({ isActive }) =>
               `font-bold ${
                 isActive ? 'text-green-600' : 'hover:text-green-600'
@@ -50,6 +52,7 @@ const Navbar = () => {
         )}
         <NavLink
           to="/Equipment"
+          title="ALL-Equipments"
           className={({ isActive }) =>
             `font-bold ${isActive ? 'text-green-600' : 'hover:text-green-600'}`
           }
@@ -60,6 +63,7 @@ const Navbar = () => {
         {user && (
           <NavLink
             to="/MyEquipmentList"
+            title="My-Equipments-List"
             className={({ isActive }) =>
               `font-bold ${
                 isActive ? 'text-green-600' : 'hover:text-green-600'
@@ -72,6 +76,7 @@ const Navbar = () => {
         {user && (
           <NavLink
             to="/AddEquipment"
+            title="My-Add-Equipments"
             className={({ isActive }) =>
               `font-bold ${
                 isActive ? 'text-green-600' : 'hover:text-green-600'

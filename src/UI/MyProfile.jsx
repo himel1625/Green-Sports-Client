@@ -41,17 +41,17 @@ const MyProfile = () => {
                   <strong>UID:</strong> {user?.uid}
                 </p>
                 <p>
-                  <strong>Email Verified:</strong>{' '}
+                  <strong>Email Verified:</strong>
                   {user?.emailVerified ? 'Yes' : 'No'}
                 </p>
                 <p>
-                  <strong>Account Created:</strong>{' '}
+                  <strong>Account Created:</strong>
                   {user?.metadata?.creationTime
                     ? formatDateTime(user.metadata.creationTime)
                     : 'N/A'}
                 </p>
                 <p>
-                  <strong>Last Login:</strong>{' '}
+                  <strong>Last Login:</strong>
                   {user?.metadata?.lastSignInTime
                     ? formatDateTime(user.metadata.lastSignInTime)
                     : 'N/A'}

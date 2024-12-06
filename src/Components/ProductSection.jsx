@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import toast from 'react-hot-toast';
 import Card from './Card';
+import { useNavigate } from 'react-router-dom';
 
 const ProductSection = () => {
+  const Navigate = useNavigate();
   const [products, setProducts] = useState([]);
   useEffect(() => {
     fetch('http://localhost:4000/products')
@@ -29,9 +31,17 @@ const ProductSection = () => {
             <Card products={item} key={item._id} />
           ))}
         </div>
+        <div>
+          <button
+            onClick={() => Navigate('/Equipment')}
+            className=" mt-10 px-4 py-2 rounded-lg text-gray-600 font-bold bg-green-300 hover:bg-green-600"
+          >
+            All Products
+          </button>
+        </div>
       </div>
     </>
   );
 };
-
+// Equipment;
 export default ProductSection;
