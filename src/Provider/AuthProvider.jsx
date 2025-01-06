@@ -16,7 +16,6 @@ const AuthProvider = ({ children }) => {
   const GoogleProvider = new GoogleAuthProvider();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  console.log(user);
   const handleGoogleBUtton = () => {
     setLoading(true);
     return signInWithPopup(auth, GoogleProvider).then(res => setUser(res.user));
