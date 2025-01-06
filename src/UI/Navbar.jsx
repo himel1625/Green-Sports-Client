@@ -49,7 +49,7 @@ const Navbar = () => {
         {/* Mobile Menu */}
         <div
           className={`${
-            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            isMenuOpen ? 'translate-y-0 ' : 'translate-y-full hidden'
           } md:hidden absolute top-16 right-0 w-full bg-white shadow-lg transition-transform duration-300 ease-in-out z-40`}
         >
           <div className='flex flex-col items-center gap-6 p-4 uppercase'>
