@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { IoEyeSharp } from 'react-icons/io5';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import loginImg from '../Image/Tablet login-bro.png';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const Login = () => {
@@ -28,13 +29,13 @@ const Login = () => {
     const email = form.get('email');
     const password = form.get('password');
     if (password.length < 6) {
-      toast.error('❌Password must contain at least 6 character ');
+      toast.error('❌Password must contain at least 6 characters');
     }
     if (!/[A-Z]/.test(password)) {
-      toast.error('❌Password must in one uppercase letter ');
+      toast.error('❌Password must contain at least one uppercase letter');
     }
     if (!/[a-z]/.test(password)) {
-      toast.error('❌Password must in one lowercase letter ');
+      toast.error('❌Password must contain at least one lowercase letter');
     }
 
     handleLogin(email, password)
@@ -44,7 +45,7 @@ const Login = () => {
         Navigate(Location?.state ? Location.state : '/');
         e.target.reset();
         if (user) {
-          toast.success('Login Successful ');
+          toast.success('Login Successful');
         }
       })
       .catch(error => {
@@ -52,15 +53,24 @@ const Login = () => {
         toast.error(`${errorCode}`);
       });
   };
+
   return (
     <>
       <Helmet>
         <title>Green Sports | Login</title>
       </Helmet>
 
-      <div className='min-h-screen flex items-center justify-center  '>
-        <div className='w-full max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl p-8 shadow-xl rounded-lg  border border-gray-300 '>
-          <h2 className='text-2xl font-bold text-center  mb-6'>
+      <div className='min-h-screen flex flex-col md:flex-row items-center justify-center bg-gray-100'>
+        <div className='w-full md:w-1/2 lg:w-1/3 p-6 md:p-8'>
+          <img
+            src={loginImg}
+            alt='Login'
+            className='w-full h-auto rounded-lg'
+          />
+        </div>
+
+        <div className='w-full md:w-1/2 lg:w-1/3 p-6 md:p-8 shadow-lg rounded-lg bg-white'>
+          <h2 className='text-2xl font-bold text-center mb-6 text-gray-800'>
             Login
           </h2>
           <form onSubmit={handleLoginSubmit} className='space-y-6'>
@@ -78,7 +88,7 @@ const Login = () => {
                 defaultValue={user && user?.email}
                 required
                 placeholder='Enter your email'
-                className='mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500'
+                className='mt-1 block w-full px-4 py-2 border '
               />
             </div>
 
@@ -95,7 +105,7 @@ const Login = () => {
                 name='password'
                 required
                 placeholder='Enter your password'
-                className='mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500'
+                className='mt-1 block w-full px-4 py-2 border border-gray-300 '
               />
               <div
                 className='absolute inset-y-0 right-3 top-6 flex items-center cursor-pointer'
@@ -108,7 +118,7 @@ const Login = () => {
             <div>
               <button
                 type='submit'
-                className='w-full py-2 bg-Color black font-bold  transition duration-200'
+                className='w-full py-2 text-white bg-Color rounded-md  t'
               >
                 Login
               </button>
@@ -116,23 +126,27 @@ const Login = () => {
           </form>
 
           <div className='mt-6 text-center'>
-            <button className='w-full py-2 bg-Color  text-white hover:from-green-600 hover:to-[#10b981] transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50'>
-              <div
-                onClick={handelG}
-                className='flex items-center justify-center gap-6'
-              >
+            <button
+              onClick={handelG}
+              type='button'
+              className='w-full py-2 text-white bg-Color rounded-md '
+            >
+              <div className='flex items-center justify-center gap-6'>
                 <FaGoogle /> Sign in with Google
               </div>
             </button>
           </div>
 
-          <div className='mt-4 text-center'>
-            <div className='text-sm text-gray-600 flex items-center justify-center'>
-              Don't have an account?
-              <NavLink to='/register' className='text-red-700 font-bold ml-1'>
+          <div className='mt-4 text-center text-sm text-gray-600'>
+            <p>
+              Don't have an account?{' '}
+              <NavLink
+                to='/register'
+                className='text-red-700 font-bold hover:text-red-800'
+              >
                 Register here
               </NavLink>
-            </div>
+            </p>
             <NavLink
               to='/Forgot'
               className='text-red-700 font-bold mx-2 cursor-pointer'

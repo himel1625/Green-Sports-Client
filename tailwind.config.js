@@ -8,7 +8,7 @@ export default {
       },
       colors: {
         Color: '#c9241a',
-        // Color: '#9538e2',
+        // Color: '#2b6cb0',
       },
     },
   },
