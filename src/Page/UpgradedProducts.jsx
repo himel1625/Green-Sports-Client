@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLoaderData, useParams } from 'react-router-dom';
-import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../Provider/AuthProvider';
 const UpgradedProducts = () => {
   const [products, setProducts] = useState([]);
   const { user } = useContext(AuthContext);
@@ -39,17 +39,14 @@ const UpgradedProducts = () => {
       userEmail,
       userName,
     };
-
-    fetch(
-      `https://a10-b10-sports-equipment-store-server.vercel.app/AllProducts/${_id}`,
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(allData),
-      }
-    )
+    // ${import.meta.env.VITE_SERVER_API}
+    fetch(`${import.meta.env.VITE_SERVER_API}/AllProducts/${_id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(allData),
+    })
       .then(res => res.json())
       .then(data => {
         if (data.modifiedCount > 0) {
@@ -72,176 +69,176 @@ const UpgradedProducts = () => {
       </Helmet>
 
       <div>
-        <div className="max-w-4xl mx-auto p-6 mt-8  shadow-lg rounded-lg border mb-6 border-gray-300">
-          <h2 className="text-3xl font-bold text-green-600 mb-6 text-center ">
+        <div className='max-w-4xl mx-auto p-6 mt-8  shadow-lg rounded-lg border mb-6 border-gray-300'>
+          <h2 className='text-3xl font-bold text-green-600 mb-6 text-center '>
             Upgraded Equipment
           </h2>
           <form
             onSubmit={handleSubmit}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            className='grid grid-cols-1 md:grid-cols-2 gap-6'
           >
             <div>
-              <label className="block font-medium text-gray-700">
+              <label className='block font-medium text-gray-700'>
                 Image URL
               </label>
               <input
-                type="url"
-                name="image"
+                type='url'
+                name='image'
                 defaultValue={products && products.image}
-                placeholder="https://example.com/image.jpg"
-                className="w-full border p-2 rounded focus:outline-green-400"
+                placeholder='https://example.com/image.jpg'
+                className='w-full border p-2 rounded focus:outline-green-400'
                 required
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">
+              <label className='block font-medium text-gray-700'>
                 Item Name
               </label>
               <input
-                type="text"
-                name="itemName"
+                type='text'
+                name='itemName'
                 defaultValue={products && products.itemName}
-                placeholder="Enter item name"
-                className="w-full border p-2 rounded focus:outline-green-400"
+                placeholder='Enter item name'
+                className='w-full border p-2 rounded focus:outline-green-400'
                 required
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">
+              <label className='block font-medium text-gray-700'>
                 Category Name
               </label>
               <input
-                type="text"
-                name="category"
+                type='text'
+                name='category'
                 defaultValue={products && products.category}
-                placeholder="Enter category name"
-                className="w-full border p-2 rounded focus:outline-green-400"
+                placeholder='Enter category name'
+                className='w-full border p-2 rounded focus:outline-green-400'
                 required
               />
             </div>
 
-            <div className="md:col-span-2">
-              <label className="block font-medium text-gray-700">
+            <div className='md:col-span-2'>
+              <label className='block font-medium text-gray-700'>
                 Description
               </label>
               <textarea
-                name="description"
+                name='description'
                 defaultValue={products && products.description}
-                placeholder="Provide a detailed description"
-                className="w-full border p-2 rounded focus:outline-green-400"
-                rows="3"
+                placeholder='Provide a detailed description'
+                className='w-full border p-2 rounded focus:outline-green-400'
+                rows='3'
                 required
               ></textarea>
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">
+              <label className='block font-medium text-gray-700'>
                 Price (USD)
               </label>
               <input
-                type="number"
-                name="price"
+                type='number'
+                name='price'
                 defaultValue={products && products.price}
-                placeholder="Enter price"
-                min="0"
-                step="0.01"
-                className="w-full border p-2 rounded focus:outline-green-400"
+                placeholder='Enter price'
+                min='0'
+                step='0.01'
+                className='w-full border p-2 rounded focus:outline-green-400'
                 required
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">
+              <label className='block font-medium text-gray-700'>
                 Rating (1-5)
               </label>
               <input
-                type="number"
-                name="rating"
+                type='number'
+                name='rating'
                 defaultValue={products && products.rating}
-                placeholder="Rate from 1 to 5"
-                min="1"
-                max="5"
-                step="0.1"
-                className="w-full border p-2 rounded focus:outline-green-400"
+                placeholder='Rate from 1 to 5'
+                min='1'
+                max='5'
+                step='0.1'
+                className='w-full border p-2 rounded focus:outline-green-400'
                 required
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">
+              <label className='block font-medium text-gray-700'>
                 Customization
               </label>
               <input
-                type="text"
-                name="customization"
+                type='text'
+                name='customization'
                 defaultValue={products && products.customization}
-                placeholder="e.g., Bat with extra grip"
-                className="w-full border p-2 rounded focus:outline-green-400"
+                placeholder='e.g., Bat with extra grip'
+                className='w-full border p-2 rounded focus:outline-green-400'
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">
+              <label className='block font-medium text-gray-700'>
                 Processing Time (Days)
               </label>
               <input
-                type="text"
-                name="processingTime"
+                type='text'
+                name='processingTime'
                 defaultValue={products && products.processingTime}
-                placeholder="Enter processing time in days"
-                min="1"
-                className="w-full border p-2 rounded focus:outline-green-400"
+                placeholder='Enter processing time in days'
+                min='1'
+                className='w-full border p-2 rounded focus:outline-green-400'
                 required
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">
+              <label className='block font-medium text-gray-700'>
                 Stock Status (Quantity)
               </label>
               <input
-                type="number"
-                name="stockStatus"
+                type='number'
+                name='stockStatus'
                 defaultValue={products && products.stockStatus}
-                placeholder="Enter available quantity"
-                min="0"
-                className="w-full border p-2 rounded focus:outline-green-400"
+                placeholder='Enter available quantity'
+                min='0'
+                className='w-full border p-2 rounded focus:outline-green-400'
                 required
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">
+              <label className='block font-medium text-gray-700'>
                 User Email
               </label>
               <input
-                type="email"
-                name="userEmail"
+                type='email'
+                name='userEmail'
                 value={user && user?.email}
                 readOnly
-                className="w-full border p-2 bg-gray-100 rounded"
+                className='w-full border p-2 bg-gray-100 rounded'
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">
+              <label className='block font-medium text-gray-700'>
                 User Name
               </label>
               <input
-                type="text"
-                name="userName"
+                type='text'
+                name='userName'
                 value={user && user?.displayName}
                 readOnly
-                className="w-full border p-2 bg-gray-100 rounded"
+                className='w-full border p-2 bg-gray-100 rounded'
               />
             </div>
 
-            <div className="md:col-span-2">
+            <div className='md:col-span-2'>
               <button
-                type="submit"
-                className="w-full bg-green-400 text-white p-3 rounded hover:bg-green-500 transition-colors"
+                type='submit'
+                className='w-full bg-green-400 text-white p-3 rounded hover:bg-green-500 transition-colors'
               >
                 Add Equipment
               </button>

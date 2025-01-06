@@ -7,11 +7,10 @@ export default {
         sora: ['Sora', 'sans-serif'],
       },
       colors: {
-        Color: '#9538e2',
+        Color: '#c9241a',
+        // Color: '#9538e2',
       },
-    
     },
   },
-  darkMode: 'class',
   plugins: [require('daisyui')],
 };

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import toast from 'react-hot-toast';
-import Card from './Card';
 import { useNavigate } from 'react-router-dom';
+import Card from './Card';
 
 const ProductSection = () => {
   const Navigate = useNavigate();
   const [products, setProducts] = useState([]);
+
   useEffect(() => {
-    fetch('https://a10-b10-sports-equipment-store-server.vercel.app/products')
+    fetch(`${import.meta.env.VITE_SERVER_API}/products`)
       .then(res => res.json())
       .then(data => {
         setProducts(data);
@@ -18,25 +19,29 @@ const ProductSection = () => {
       });
   }, []);
 
+  const displayedProducts = products.slice(0, 12);
+
   return (
     <>
       <Helmet>
         <title>Green Sports | Product-Section</title>
       </Helmet>
-      <div className="container mx-auto px-4 py-8 mt-6">
-        <h1 className="text-4xl font-bold text-center mb-8">Product Section</h1>
+      <div className='container mx-auto px-4 py-8 mt-6'>
+        <h1 className='text-4xl font-bold text-center mb-8'>Product Section</h1>
 
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 mx-auto lg:mx-auto md:mx-auto">
-          {products.map(item => (
+        {/* Updated grid styling */}
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-auto'>
+          {displayedProducts.map(item => (
             <Card products={item} key={item._id} />
           ))}
         </div>
-        <div>
+
+        <div className='text-center mt-8'>
           <button
             onClick={() => Navigate('/Equipment')}
-            className=" mt-10 px-4 py-2 rounded-lg text-gray-600 font-bold bg-green-300 hover:bg-green-600"
+            className='px-6 py-3 rounded-lg text-white font-bold bg-Color'
           >
-            All Products
+            View All Products
           </button>
         </div>
       </div>

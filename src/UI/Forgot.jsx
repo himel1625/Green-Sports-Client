@@ -49,7 +49,7 @@ const Forgot = () => {
             </div>
             <button
               type="submit"
-              className="w-full bg-green-500 text-white font-medium py-2 px-4 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+              className="w-full bg-Color text-white font-medium py-2 px-4 rounded-lg hover:bg-Color focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
             >
               Reset Password
             </button>

@@ -1,199 +1,221 @@
-import Lottie from 'lottie-react';
-import React, { useContext, useEffect, useState } from 'react';
-import { MdOutlineDarkMode, MdOutlineWbSunny } from 'react-icons/md';
-import { NavLink, useNavigate } from 'react-router-dom';
-import animation from '../Animation/animation.json';
-import Header from '../Components/Header';
-import { AuthContext } from '../Provider/AuthProvider';
+import { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { IoCloseSharp } from 'react-icons/io5';
+import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../Provider/AuthProvider';
+
 const Navbar = () => {
   const { user, LogOut } = useContext(AuthContext);
-  const Navigate = useNavigate();
-  const [isDarkMode, setIsDarkMode] = useState(
-    localStorage.getItem('theme') === 'dark'
-  );
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', currentTheme);
-  }, [isDarkMode]);
-
-  const toggleMode = () => {
-    const newMode = !isDarkMode ? 'dark' : 'light';
-    setIsDarkMode(!isDarkMode);
-    localStorage.setItem('theme', newMode);
-    document.documentElement.setAttribute('data-theme', newMode);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
-
-  const links = (
-    <>
-      <div className="lg:space-x-4 flex flex-col lg:flex lg:flex-row">
-        <NavLink
-          to="/"
-          title="Home"
-          className={({ isActive }) =>
-            `font-bold ${isActive ? 'text-green-600' : 'hover:text-green-600'}`
-          }
-        >
-          Home
-        </NavLink>
-        {user && (
-          <NavLink
-            to="/MyProfile"
-            title="My-Profile"
-            className={({ isActive }) =>
-              `font-bold ${
-                isActive ? 'text-green-600' : 'hover:text-green-600'
-              }`
-            }
-          >
-            MyProfile
-          </NavLink>
-        )}
-        <NavLink
-          to="/Equipment"
-          title="ALL-Equipments"
-          className={({ isActive }) =>
-            `font-bold ${isActive ? 'text-green-600' : 'hover:text-green-600'}`
-          }
-        >
-          All-Equi:
-        </NavLink>
-
-        {user && (
-          <NavLink
-            to="/MyEquipmentList"
-            title="My-Equipments-List"
-            className={({ isActive }) =>
-              `font-bold ${
-                isActive ? 'text-green-600' : 'hover:text-green-600'
-              }`
-            }
-          >
-            my-Equi-List
-          </NavLink>
-        )}
-        {user && (
-          <NavLink
-            to="/AddEquipment"
-            title="My-Add-Equipments"
-            className={({ isActive }) =>
-              `font-bold ${
-                isActive ? 'text-green-600' : 'hover:text-green-600'
-              }`
-            }
-          >
-            Add-Equi:
-          </NavLink>
-        )}
-        <div
-          className="flex items-center cursor-pointer lg:hidden"
-          onClick={toggleMode}
-        >
-          {isDarkMode ? (
-            <MdOutlineWbSunny size={30} />
-          ) : (
-            <MdOutlineDarkMode size={30} />
-          )}
-        </div>
-      </div>
-    </>
-  );
 
   const handleLogout = () => {
     LogOut();
-    toast.success('Successfully Logout');
+    toast.success('Logout successful');
   };
 
   return (
-    <div className="sticky top-0 z-10">
-      <div className="navbar h-20  backdrop-filter backdrop-blur-xl px-4">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost lg:hidden "
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-10 w-10"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-16 w-52 p-2 shadow "
-            >
-              {links}
-            </ul>
-          </div>
+    <div className='sticky top-0 z-50 bg-[#081621] w-full'>
+      <div className='mx-auto flex items-center justify-between h-20 md:px-8'>
+        {/* Logo */}
+        <div className='lg:text-4xl text-2xl font-bold mx-4 flex select-none'>
+          <span className='text-[#c9241a]'>Green</span>-
+          <span className='text-[#0176b3]'>Sports</span>
+        </div>
 
-          <div>
-            <h1 className="text-3xl font-bold text-green-400 flex items-center justify-center">
-              <div className="w-10 h-10 mx-2 hidden lg:block">
-                <Lottie animationData={animation} />
+        {/* Mobile Menu Icon */}
+        <div className='md:hidden mx-4'>
+          {isMenuOpen ? (
+            <IoCloseSharp
+              size={30}
+              className='cursor-pointer text-white'
+              onClick={toggleMenu}
+              aria-label='Close Menu'
+            />
+          ) : (
+            <GiHamburgerMenu
+              size={30}
+              className='cursor-pointer text-white'
+              onClick={toggleMenu}
+              aria-label='Open Menu'
+            />
+          )}
+        </div>
+
+        {/* Mobile Menu */}
+        <div
+          className={`${
+            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          } md:hidden absolute top-16 right-0 w-full bg-white shadow-lg transition-transform duration-300 ease-in-out z-40`}
+        >
+          <div className='flex flex-col items-center gap-6 p-4 uppercase'>
+            <NavLink
+              to='/'
+              className={({ isActive }) =>
+                `font-medium ${
+                  isActive ? 'text-[#c9241a]' : 'text-[#0176b3]'
+                } hover:text-customYellow`
+              }
+            >
+              HOME
+            </NavLink>
+
+            <NavLink
+              to='/equipment'
+              className={({ isActive }) =>
+                `font-medium ${
+                  isActive ? 'text-[#c9241a]' : 'text-[#0176b3]'
+                } hover:text-customYellow`
+              }
+            >
+              All Equipment
+            </NavLink>
+
+            {user && (
+              <>
+                <NavLink
+                  to='/addEquipment'
+                  className={({ isActive }) =>
+                    `font-medium ${
+                      isActive ? 'text-[#c9241a]' : 'text-[#0176b3]'
+                    } hover:text-customYellow`
+                  }
+                >
+                  Add Equipment
+                </NavLink>
+                <NavLink
+                  to='/dashboard'
+                  className={({ isActive }) =>
+                    `font-medium ${
+                      isActive ? 'text-[#c9241a]' : 'text-[#0176b3]'
+                    } hover:text-customYellow`
+                  }
+                >
+                  Dashboard
+                </NavLink>
+                <NavLink
+                  to='/brandIdentity'
+                  className={({ isActive }) =>
+                    `font-medium ${
+                      isActive ? 'text-[#c9241a]' : 'text-[#0176b3]'
+                    } hover:text-customYellow`
+                  }
+                >
+                  Brand Identity
+                </NavLink>
+                <NavLink
+                  to='/myProfile'
+                  className={({ isActive }) =>
+                    `font-medium ${
+                      isActive ? 'text-[#c9241a]' : 'text-[#0176b3]'
+                    } hover:text-customYellow`
+                  }
+                >
+                  Account
+                </NavLink>
+              </>
+            )}
+
+            <div>
+              <div className='font-bold text-[#c9241a]'>
+                {user && user.email ? (
+                  <button onClick={handleLogout}>LogOut</button>
+                ) : (
+                  <NavLink to='/Login'>
+                    <button className='text-green-600'>Login</button>
+                  </NavLink>
+                )}
               </div>
-              <NavLink to="/">
-                <span className="text-green-900">G</span>reen-
-                <span className="text-green-900">S</span>ports
-              </NavLink>
-            </h1>
+            </div>
           </div>
         </div>
 
-        <div className="navbar-end flex items-center space-x-4">
-          <div className="nav bar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 mx-2">{links}</ul>
-            <div
-              className="flex items-center cursor-pointer"
-              onClick={toggleMode}
-            >
-              {isDarkMode ? (
-                <MdOutlineWbSunny size={30} />
+        {/* Desktop Menu */}
+        <div className='md:flex hidden items-center gap-10 uppercase'>
+          <NavLink
+            to='/'
+            className={({ isActive }) =>
+              `font-bold ${
+                isActive ? 'text-[#c9241a]' : 'text-white'
+              } hover:text-customYellow`
+            }
+          >
+            HOME
+          </NavLink>
+
+          <NavLink
+            to='/equipment'
+            className={({ isActive }) =>
+              `font-medium ${
+                isActive ? 'text-[#c9241a]' : 'text-white'
+              } hover:text-customYellow`
+            }
+          >
+            All Equipment
+          </NavLink>
+
+          {user && (
+            <>
+              <NavLink
+                to='/addEquipment'
+                className={({ isActive }) =>
+                  `font-medium ${
+                    isActive ? 'text-[#c9241a]' : 'text-white'
+                  } hover:text-customYellow`
+                }
+              >
+                Add Equipment
+              </NavLink>
+              <NavLink
+                to='/dashboard'
+                className={({ isActive }) =>
+                  `font-medium ${
+                    isActive ? 'text-[#c9241a]' : 'text-white'
+                  } hover:text-customYellow`
+                }
+              >
+                Dashboard
+              </NavLink>
+              <NavLink
+                to='/brandIdentity'
+                className={({ isActive }) =>
+                  `font-medium ${
+                    isActive ? 'text-[#c9241a]' : 'text-white'
+                  } hover:text-customYellow`
+                }
+              >
+                Brand Identity
+              </NavLink>
+              <NavLink
+                to='/myProfile'
+                className={({ isActive }) =>
+                  `font-medium ${
+                    isActive ? 'text-[#c9241a]' : 'text-white'
+                  } hover:text-customYellow`
+                }
+              >
+                Account
+              </NavLink>
+            </>
+          )}
+
+          <div>
+            <div className='font-bold text-[#c9241a]'>
+              {user && user.email ? (
+                <button onClick={handleLogout}>LogOut</button>
               ) : (
-                <MdOutlineDarkMode size={30} />
+                <NavLink to='/login'>
+                  <button className='text-green-600'>Login</button>
+                </NavLink>
               )}
             </div>
           </div>
-          <div>
-            {user?.photoURL ? (
-              <img
-                className="w-12 h-12 rounded-full cursor-pointer"
-                src={user.photoURL}
-                alt="User Avatar"
-              />
-            ) : (
-              <img
-                className="w-12 h-12 rounded-full cursor-pointer"
-                src="https://cdn-icons-png.flaticon.com/512/8847/8847419.png"
-                alt="Default Avatar"
-              />
-            )}
-          </div>
-
-          <div className="font-bold text-left text-green-400 mx-2">
-            {user && user.email ? (
-              <NavLink to="/">
-                <button onClick={handleLogout}>LogOut</button>
-              </NavLink>
-            ) : (
-              <button onClick={() => Navigate('/Login')}>Login</button>
-            )}
-          </div>
         </div>
       </div>
-      <hr />
-      <Header></Header>
     </div>
   );
 };

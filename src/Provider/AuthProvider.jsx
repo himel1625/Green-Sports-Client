@@ -11,13 +11,12 @@ import {
 import { createContext, useEffect, useState } from 'react';
 import auth from '../Auth/auth';
 
-
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const GoogleProvider = new GoogleAuthProvider();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  console.log(user);
   const handleGoogleBUtton = () => {
     setLoading(true);
     return signInWithPopup(auth, GoogleProvider).then(res => setUser(res.user));

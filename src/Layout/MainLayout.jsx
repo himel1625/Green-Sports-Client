@@ -11,11 +11,13 @@ const MainLayout = () => {
       <Helmet>
         <title>Green Sports | Home</title>
       </Helmet>
-      <div className="mx-auto max-w-[1440px] lg:mx-auto scroll-smooth font-sora md:mx-auto ">
+      <div className='bg-[#F2F4F8] mx-auto scroll-smooth'>
         <Navbar></Navbar>
-        <div className="min-h-[calc(100vh-232px)] bg-base-100">
-          <Toaster position="top-right" reverseOrder={false} />
-          <Outlet></Outlet>
+        <div className='mx-auto container lg:mx-auto scroll-smooth font-sora md:mx-auto  '>
+          <div className='min-h-[calc(100vh-232px)] '>
+            <Toaster position='top-right' reverseOrder={false} />
+            <Outlet></Outlet>
+          </div>
         </div>
         <Footer></Footer>
       </div>
