@@ -23,8 +23,10 @@ const Navbar = () => {
       <div className='mx-auto flex items-center justify-between h-20 md:px-8'>
         {/* Logo */}
         <div className='lg:text-4xl text-2xl font-bold mx-4 flex select-none'>
-          <span className='text-[#c9241a]'>Green</span>-
-          <span className='text-[#0176b3]'>Sports</span>
+          <NavLink to='/'>
+            <span className='text-[#c9241a]'>Green</span>-
+            <span className='text-[#0176b3]'>Sports</span>
+          </NavLink>
         </div>
 
         {/* Mobile Menu Icon */}
